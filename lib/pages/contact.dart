@@ -1,3 +1,4 @@
+import 'package:chatapp/pages/chatbox.dart';
 import 'package:flutter/material.dart';
 
 class Conversations extends StatelessWidget {
@@ -9,7 +10,13 @@ class Conversations extends StatelessWidget {
 
     final List<Map<String, String>> conversations = [
       {"name": "Aavash", "message": "Hello", "time": "7.00 AM"},
-      {"name": "Aavash", "message": "Hello", "time": "7.00 AM"},
+      {"name": "Aryam", "message": "Oi", "time": "8.00 AM"},
+      {"name": "Bibek", "message": "Hello", "time": "7.10 AM"},
+      {
+        "name": "Bijen",
+        "message": "Basketball khelna aaija",
+        "time": "7.00 AM"
+      },
     ];
 
     return Scaffold(
@@ -59,6 +66,7 @@ class Conversations extends StatelessWidget {
               itemCount: conversations.length,
               itemBuilder: (context, index) {
                 return ListTile(
+                  //msg circle
                   leading: CircleAvatar(
                     backgroundColor: Colors.blueGrey,
                     child: Text(
@@ -66,14 +74,26 @@ class Conversations extends StatelessWidget {
                       style: TextStyle(color: Colors.white),
                     ),
                   ),
+
+                  //person Name
                   title: Text(
                     conversations[index]['name']!,
-                    style: TextStyle(fontSize: 20),
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
-                  subtitle: Text(conversations[index]['message']!),
+                  subtitle: Text(
+                    conversations[index]['message']!,
+                    style: TextStyle(fontSize: 15),
+                  ),
                   trailing: Text(conversations[index]['time']!),
                   onTap: () {
-                    Navigator.pushNamed(context, "/chatbox");
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Chatbox(
+                                name: conversations[index]['name']!,
+                                message: conversations[index]['message']!,
+                              )),
+                    );
                   },
                 );
               },

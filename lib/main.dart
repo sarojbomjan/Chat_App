@@ -1,4 +1,3 @@
-import 'package:chatapp/pages/chatbox.dart';
 import 'package:chatapp/pages/contact.dart';
 import 'package:chatapp/pages/loginpage.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +21,6 @@ class MyApp extends StatelessWidget {
       ),
       home: Loginpage(),
       routes: {
-        '/chatbox': (context) => const Chatbox(),
         '/conversation': (context) => const Conversations(),
       },
     );
