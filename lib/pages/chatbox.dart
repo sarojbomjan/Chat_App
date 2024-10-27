@@ -14,10 +14,6 @@ class Chatbox extends StatelessWidget {
           backgroundColor: Colors.teal,
           title: Container(
             padding: EdgeInsets.only(left: 20),
-            // decoration: BoxDecoration(
-            //   color: Colors.teal[300],
-            //   borderRadius: BorderRadius.circular(8),
-            // ),
             child: Text(
               '$name',
               style: TextStyle(
@@ -60,7 +56,7 @@ class Chatbox extends StatelessWidget {
                         padding: EdgeInsets.all(20),
                         margin: EdgeInsets.only(top: 40, left: 0),
                         decoration: BoxDecoration(
-                          color: Colors.teal[300],
+                          color: Colors.blue[300],
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Text(

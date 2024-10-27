@@ -1,7 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class Loginpage extends StatelessWidget {
-  const Loginpage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final TextEditingController _nameController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    // Load the stored name when the widget initializes
+  }
+
+  // Method to save the name to SharedPreferences
+  void _saveName() async {
+    if (_nameController.text.isEmpty) {
+      //error msg
+    } else {
+      String userId = DateTime.timestamp().toIso8601String();
+
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+      await prefs.setString('userid', userId);
+      await prefs.setString("username", _nameController.text);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,17 +59,18 @@ class Loginpage extends StatelessWidget {
             Container(
               width: size.width / 2,
               child: TextField(
+                controller:
+                    _nameController, // Connect the controller to the TextField
                 decoration: InputDecoration(
                   labelText: "Enter your name",
-                  border: OutlineInputBorder(), // border around the TextField
+                  border: OutlineInputBorder(),
                 ),
               ),
             ),
-            SizedBox(
-              height: 50,
-            ),
+            SizedBox(height: 50),
             ElevatedButton(
               onPressed: () {
+                _saveName(); // Save the name before navigating
                 Navigator.pushNamed(context, "/conversation");
               },
               child: Text(
